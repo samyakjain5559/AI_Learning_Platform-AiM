@@ -23,7 +23,7 @@ router.post('/do_sign_up', (req, res) => {
     // we are using "req or request(the incoming part)" for reading the data that was send at this /addtweet url from frontend
     const username = req.body.inputemail;
     const userId = 1;
-    const userpassword = "jkdjf";
+    const userpassword = req.body.inputpassword;
 
     pool.getConnection( (err, conn) => {
         if (err) throw err;
