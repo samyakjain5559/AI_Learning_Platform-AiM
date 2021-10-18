@@ -9,7 +9,7 @@ function Tweet() {
     const [items, setItems] = useState([]);
 
     const fetchItems = async () => {
-        const data = await fetch('/gettweets');  // /gettweets and /adtweet is running on port of backend
+        const data = await fetch('/getsignup');  // /gettweets and /adtweet is running on port of backend
         const items = await data.json();
         setItems(items);
     };
@@ -19,8 +19,8 @@ function Tweet() {
         // Then later in backend in handler class we use post methord to get the "req" and value using "tweetInput"
         <section>
             <div> 
-                <h1 class="mt-5">Tweets</h1>
-                <form method="POST" action="/addTweet">
+                <h1 class="mt-5">Test POST/GET Call</h1>
+                <form method="POST" action="/do_sign_up">
                     <div class="input-group justify-content-center">
                         <div class="input-group-prepend">
                             <input type="text" name="tweetInput" class="form-control" />
@@ -34,9 +34,9 @@ function Tweet() {
                             <div class="card-deck">
                                 <div class="card">
                                     <div class="card-body p-1">
-                                        <h6 class="card-title">{item.username}</h6>
-                                        <p class="card-text">{item.tweet}</p>
-                                        <p class="card-text"><i>by {item.fullname}</i></p>
+                                        <h6 class="card-title">{item.person_id}</h6>
+                                        <p class="card-text">{item.person_name}</p>
+                                        <p class="card-text"><i>by {item.person_password}</i></p>
                                     </div>
                                 </div>
                             </div>

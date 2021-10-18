@@ -1,12 +1,13 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import {Link} from 'react-router-dom';
 function Home() {
     return(
         <section>
             <div class="container-fluid">
                 <h1 class="mt-5">Welcome</h1>
-                <p>This site was created using Node JS with React and MySQL.</p>
+                <h4 class="mt-7">Please Login Using Your Email and Password</h4>
             </div>
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -28,6 +29,18 @@ function Home() {
                     Submit
                 </Button>
             </Form>
+
+            <div class="container-fluid">
+                <h1 class="mt-5">Dont have a Account ?</h1>
+                <p>Sign Up here !!</p>
+            </div>
+              
+            <Link to='/sign_up'> 
+                <Button variant="primary" type="submit" >
+                      Sign Up
+                </Button>    
+            </Link>
+          
         </section>
     );
 }

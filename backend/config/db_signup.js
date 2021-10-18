@@ -7,7 +7,7 @@ var pool = mysql.createPool({
     user: "root",
     port: "3306",
     password: "password",
-    database: "node_twitterclone"
+    database: "eng_4k_web_app"
 })
 
 module.exports = pool;

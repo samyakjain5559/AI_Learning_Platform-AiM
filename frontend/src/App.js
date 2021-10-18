@@ -1,17 +1,25 @@
 import './App.css';
-import Nav from './components/Nav';
 import Home from './components/Home';
-import Tweet from './components/Tweet';
+import displayit from './components/Test_display';
+import Sign_Up from './components/Sign_Up';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {
   return (
     <Router>
       <div className="App">
-          <Nav />
+          <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/display">Display</a>
+                </li>
+          </ul> 
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/tweets" exact component={Tweet} />
+            <Route path="/display" exact component={displayit} />
+            <Route path="/sign_up" exact component={Sign_Up} />
           </Switch>
       </div>
     </Router>
