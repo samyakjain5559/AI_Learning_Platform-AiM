@@ -6,5 +6,5 @@ npm install mysql
 
 MySQL Workbench:
 - Create a Connection
-- Create a new Schema (node_twitterclone)
-- Create tables (users, tweets)
+- Create a new Schema (eng_4k_web_app)
+- Create tables (sign_up) with these fields (person_id, person_name, person_password)
