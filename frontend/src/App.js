@@ -2,6 +2,7 @@ import './App.css';
 import Home from './components/Home';
 import displayit from './components/Test_display';
 import Sign_Up from './components/Sign_Up';
+import CourseAdd from './components/Course_Lessons_add'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             <Route path="/" exact component={Home} />
             <Route path="/display" exact component={displayit} />
             <Route path="/sign_up" exact component={Sign_Up} />
+            <Route path="/course_add" exact component={CourseAdd} />
           </Switch>
       </div>
     </Router>
