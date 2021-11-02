@@ -2,9 +2,8 @@ To Run this Project follow these steps --
 
 Step 1 Download Node js from Google
 
-step 2 
+Step 2 Open 2 terminal in Vs code
 ```javascript
-   Open 2 terminal in Vs code ->
    In first termal do -> cd frontbend -> npm start
    In 2nd terminal do -> cd backend -> npm run server
 ```
