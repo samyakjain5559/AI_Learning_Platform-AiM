@@ -26,21 +26,35 @@ function Sign_Up() {
     return(
         <section>
             <div class="container-fluid">
-                <h1 class="mt-5">Please Fill The Following Details To Sign Up</h1>
+                <h1 class="mt-2">Create your account</h1>
+                <medium class="form-text text-muted">Please fill in the following details to Sign Up</medium>
             </div>
             
-            <form method="POST" action="/do_sign_up">
+            <form method="POST" action="/do_sign_up" class="codehim-form">
                   <div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" name="inputemail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+                            {/*<label for="exampleInputEmail1">Email address</label>*/}
+                            <label for="email"><i class="fa fa-envelope"></i> Email address:</label>
+                            <input type="email" name="inputemail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email address" required/>
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
+                        <br></br>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" name="inputpassword" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                            {/*<label for="exampleInputPassword1">Password</label>*/}
+                            <label for="pass"><i class="fa fa-lock"></i> Password:</label>
+                            <input type="password" name="inputpassword" class="form-control" id="exampleInputPassword1" placeholder="Enter your password" required/>
                         </div>
-                        <input type="submit" value="Send" class="btn btn-primary mb-2" />   
+                        <br></br>
+                        <div class="form-group">
+                            <label for="pass"><i class="fa fa-user"></i> Choose an account:</label>
+                            <br></br>
+                            <label><input type="radio" name="signUp" name="checkbox" value="student" id="student"  checked /> Student</label>
+                            <br></br>
+                            <label><input type="radio" name="signUp" name="checkbox" value="teacher" id="teacher" /> Teacher</label>
+                        </div>
+                        {/*<input type="submit" value="Send" class="btn btn-primary mb-2" />*/}   
+                        <input type="submit" value="Send" class="btn-login  gr-bg" style={{marginLeft: "145px"}} />
+                        <br></br>
                   </div>
             </form>
         </section>
