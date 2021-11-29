@@ -17,14 +17,8 @@ function Nav() {
       </button>
       <div id="navMainMenu" class="navbar-collapse collapse">
         <div class="navbar-nav ml-auto">
-          <Link to="/searchLessons" className="nav-item nav-link">
-            Lesson Search
-          </Link>
-          <Link to="/listLessons" className="nav-item nav-link">
-            Lesson List
-          </Link>
-          <Link to="/addLessons" className="nav-item nav-link">
-            Lesson Adder
+          <Link to="/" className="nav-item nav-link">
+            Sign_Out
           </Link>
         </div>
       </div>

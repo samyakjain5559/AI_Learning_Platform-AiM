@@ -88,12 +88,13 @@ router.post("/addCourse", (req, res) => {
   const media = req.body.lessonMedia;
   const author = currentUser; // Placeholder until implemented with login features
   const image = req.body.courseimage;
+  const description = req.body.coursedescription;
 
   pool.getConnection((err, conn) => {
     if (err) throw err;
 
-    var qry = `INSERT INTO lessondb (Author, LessonName,image) VALUES (?, ?, ?)`;
-    conn.query(qry, [author, name, image], (err, result) => {
+    var qry = `INSERT INTO lessondb (Author, LessonName,image,description) VALUES (?, ?, ?, ?)`;
+    conn.query(qry, [author, name, image, description], (err, result) => {
       if (err) throw err;
       console.log("lesson added!");
     });

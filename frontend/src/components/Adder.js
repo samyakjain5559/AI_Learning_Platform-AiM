@@ -77,6 +77,15 @@ function Adder() {
                 placeholder="i.e. google image link"
               />
             </div>
+            <div class="col">
+              Course Description
+              <input
+                name="coursedescription"
+                type="text"
+                class="form-control"
+                placeholder="i.e. Summary of the course"
+              />
+            </div>
           </div>
           <input type="submit" value="Send" class="btn btn-primary mb-2" />
         </form>
