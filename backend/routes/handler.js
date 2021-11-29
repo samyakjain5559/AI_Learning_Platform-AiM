@@ -77,18 +77,19 @@ router.post('/do_login', (req, res) => {
     });
 });
 
-router.post('/addLessons', (req, res) => {       
+router.post('/addCourse', (req, res) => {       
     // we are using "req or request(the incoming part)" for reading the data that was send at this /addtweet url from frontend
     const name = req.body.lessonName;
     const tag = req.body.lessonTag;
     const media = req.body.lessonMedia;
-    const author = currentUser // Placeholder until implemented with login features
+    const author = currentUser; // Placeholder until implemented with login features
+    const image = req.body.courseimage; 
 
     pool.getConnection( (err, conn) => {
         if (err) throw err;
 
-        var qry = `INSERT INTO lessondb (Author, LessonName) VALUES (?, ?)`;
-        conn.query(qry, [author, name], (err, result) => {
+        var qry = `INSERT INTO lessondb (Author, LessonName,image) VALUES (?, ?, ?)`;
+        conn.query(qry, [author, name, image], (err, result) => {
             if (err) throw err;
             console.log('lesson added!');
         });
