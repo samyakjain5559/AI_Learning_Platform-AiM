@@ -38,7 +38,7 @@ import { Link } from "react-router-dom";
               <img class="card-img-top" src={item.image} alt="Lesson"></img>
               <div class="card-body">
                 <h5 class="card-title">{item.LessonName}</h5>
-                <p class="card-text">Description of the lesson (Add to database) {item.tag}</p>
+                <p class="card-text">Description of the lesson (Add to database)</p>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
               </div>
             </div>
