@@ -1,5 +1,5 @@
 import React from "react"; // ES6 js
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Nav() {
   return (
@@ -17,6 +17,9 @@ function Nav() {
       </button>
       <div id="navMainMenu" class="navbar-collapse collapse">
         <div class="navbar-nav ml-auto">
+          <Link to="/searchLessons" className="nav-item nav-link">
+            Lesson Search
+          </Link>
           <Link to="/listLessons" className="nav-item nav-link">
             Lesson List
           </Link>
