@@ -38,11 +38,11 @@ function Adder() {
     // Need to implement this search from DB and display matched lessons
     <section>
       <div>
-        <h1 class="mt-5">Enter lesson information</h1>
-        <form method="POST" action="/addLessons">
+        <h1 class="mt-5">Enter Course information</h1>
+        <form method="POST" action="/addCourse">
           <div class="form-row">
             <div class="col">
-              Lesson Name
+              Course Name
               <input
                 name="lessonName"
                 type="text"
@@ -51,7 +51,7 @@ function Adder() {
               />
             </div>
             <div class="col">
-              Lesson Tags
+              Course Tags
               <input
                 name="lessonTag"
                 type="text"
@@ -60,12 +60,21 @@ function Adder() {
               />
             </div>
             <div class="col">
-              Lesson Media
+              Course Media
               <input
                 name="lessonMedia"
                 type="text"
                 class="form-control"
                 placeholder="i.e. PDF, MP4, etc."
+              />
+            </div>
+            <div class="col">
+              Course Image
+              <input
+                name="courseimage"
+                type="text"
+                class="form-control"
+                placeholder="i.e. google image link"
               />
             </div>
           </div>
