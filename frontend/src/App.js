@@ -13,16 +13,6 @@ function App() {
     <Router>
       <div className="App">
         <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="/">
-              Home
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/display">
-              Display
-            </a>
-          </li>
         </ul>
         <Nav />
         <Switch>
