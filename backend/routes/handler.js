@@ -1,4 +1,4 @@
-const express = require("express");
+  const express = require("express");
 const router = express.Router();
 const pool = require("../config/db_signup.js");
 var currentUser;
@@ -69,7 +69,7 @@ router.post("/do_login", (req, res) => {
           if (result[0].type == "teacher") {
             res.redirect("/addLessons");
           } else {
-            res.redirect("/"); // Student page team must redirect to his page
+            res.redirect("/searchLessons"); // Student page team must redirect to his page
           }
         } else {
           console.log("User not found.");
@@ -139,7 +139,7 @@ router.get("/searchLessons", (req, res) => {
     if (err) throw err;
 
     try {
-      const qry = `SELECT l.Author, l.LessonName, lm.Media, lt.Tag FROM lessondb AS l INNER JOIN lessonmediadb AS lm ON l.LessonId=lm.LessonId INNER JOIN lessontagdb AS lt ON lm.LessonId=lt.LessonId`;
+      const qry = `SELECT * FROM lessondb`;
       conn.query(qry, [currentUser], (err, result) => {
         conn.release();
         if (err) throw err;

@@ -1,66 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const SearchBar = () => (
-  <form action="/" method="get">
-    <label htmlFor="header-search">
-      <span className="visually-hidden">Search blog posts</span>
-    </label>
-    <input
-      type="text"
-      id="header-search"
-      placeholder="Search blog posts"
-      name="s"
-    />
-    <button type="submit">Search</button>
-  </form>
-);
+  function Search() {
+    // Used for fetching from backend
+    useEffect(() => {
+      fetchItems();
+    }, []);
 
-function List() {
-  // Used for fetching from backend
-  useEffect(() => {
-    fetchItems();
-  }, []);
+    const [items, setItems] = useState([]);
 
-  const [items, setItems] = useState([]);
+    const fetchItems = async () => {
+      const data = await fetch("/searchLessons"); // fetches '/listLessons' url data from port 4000
+      const items = await data.json(); // sets fetches as json items
+      setItems(items);
+    };
 
-  const fetchItems = async () => {
-    const data = await fetch("/searchLessons"); // fetches '/listLessons' url data from port 4000
-    const items = await data.json(); // sets fetches as json items
-    setItems(items);
-  };
+    /*Backend stuff above this line*/
 
-  return (
-    <section>
-      <form action="/" method="get">
-        <label htmlFor="header-search">
-          <span className="visually-hidden">Search blog posts</span>
-        </label>
-        <input
-          type="text"
-          id="header-search"
-          placeholder="Search lessons"
-          name="s"
+    const [searchTerm, setSearchTerm] = useState('');
+
+    return(
+      <div className="search">
+        <input type="text" 
+        className="searchBar" 
+        placeholder="Search lessons..." 
+        onChange={event => {setSearchTerm(event.target.value)}}
         />
-        <button type="submit">Search</button>
-      </form>
-      <div class="container-fluid">
-        {/* <h1 class="mt-5">Search</h1> */}
-        {items.map((item) => (
-          <div class="row padding">
-            <div class="alert alert-info rounded-pill" role="alert">
-              <i class="fa fa-user mr-2"></i>{" "}
-              <i>
-                <b>Lesson Name:</b> {item.LessonName} || <b>Author:</b>{" "}
-                {item.Author} || <b>Tags:</b> {item.Tag}
-              </i>
+        {items.filter((val) => {
+          if (searchTerm == "") {
+            return val;
+          } else if (val.LessonName.toLowerCase().includes(searchTerm.toLowerCase())) {
+            return val;
+          }
+        }).map((item, key) => {
+          return (
+            <div  className="card searchBoxes">
+              <img class="card-img-top" src={item.image} alt="Lesson"></img>
+              <div class="card-body">
+                <h5 class="card-title">{item.LessonName}</h5>
+                <p class="card-text">Description of the lesson (Add to database) {item.tag}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
-    </section>
-  );
+    );
 }
 
 // export default SearchBar;
-export default List;
+export default Search;
