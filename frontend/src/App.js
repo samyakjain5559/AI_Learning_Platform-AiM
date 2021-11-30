@@ -12,9 +12,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <ul class="nav">
-        </ul>
-        <Nav />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/display" exact component={displayit} />
