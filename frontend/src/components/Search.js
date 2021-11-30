@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Nav from "./Nav";
 
   function Search() {
     // Used for fetching from backend
@@ -21,6 +22,7 @@ import { Link } from "react-router-dom";
 
     return(
       <div className="search">
+        <Nav/>  
         <input type="text" 
         className="searchBar" 
         placeholder="Search lessons..." 

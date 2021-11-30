@@ -17,6 +17,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.*/
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Adder() {
   useEffect(() => {
@@ -38,6 +39,32 @@ function Adder() {
     // Need to implement this search from DB and display matched lessons
     <section>
       <div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark top">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navMainMenu"
+            aria-controls="navMainMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div id="navMainMenu" class="navbar-collapse collapse">
+            <div class="navbar-nav ml-auto">
+              <Link to="/listLessons" className="nav-item nav-link">
+                Lesson List
+              </Link>
+              <Link to="/addLessons" className="nav-item nav-link">
+                Lesson Adder
+              </Link>
+              <Link to="/" className="nav-item nav-link">
+                Sign_Out
+              </Link>
+            </div>
+          </div>
+        </nav>
         <h1 class="mt-5">Enter Course information</h1>
         <form method="POST" action="/addCourse">
           <div class="form-row">
