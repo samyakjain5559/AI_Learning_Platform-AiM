@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import axios from 'axios';
 import { Marginer } from "../marginer";
 import { AccountContext } from "./accountContext";
 import {
@@ -8,23 +9,60 @@ import {
     Input,
     MutedLink,
     SubmitButton,
+    StatusContainer,
+    StatusText,
 } from "./common";
+import { useHistory } from "react-router";
 
 export function LoginForm(props) {
     const { switchToSignup } = useContext(AccountContext);
+
+    const [emailReg, setEmailReg] = useState("");
+    const [passwordReg, setPasswordReg] = useState("");
+    const [loginStatus, setLoginStatus] = useState("");
+
+    const history = useHistory();
+
+    function handleLoginClick(e) {
+        e.preventDefault();
+        axios.post('http://localhost:4000/login', {
+            email: emailReg,
+            password: passwordReg,
+        }).then((response) => {
+            console.log(response);
+
+            if (response.data.message) {
+                setLoginStatus(response.data.message);
+            } else {
+                history.push("/studentdash"); // login successful => go to dashboard page
+            }
+        });
+    }
 
     return (
         < BoxContainer >
             <Marginer direction="vertical" margin={20} />
             <FormContainer>
-                <Input placeholder="Email" />
-                <Input type="password" placeholder="Password" />
+                <Input type="text" placeholder="Email" onChange={(e) => {
+                    setEmailReg(e.target.value);
+                    setLoginStatus("");
+                }}
+                />
+                <Input type="text" placeholder="Password" onChange={(e) => {
+                    setPasswordReg(e.target.value)
+                    setLoginStatus("");
+                }}
+                />
             </FormContainer>
             <Marginer direction="vertical" margin={15} />
             <MutedLink href="#">Forgot Password?</MutedLink>
             <Marginer direction="vertical" margin="2em" />
-            <SubmitButton>Login</SubmitButton>
-            <Marginer direction="vertical" margin={140} />
+            <SubmitButton onClick={handleLoginClick}>Login</SubmitButton>
+            <Marginer direction="vertical" margin={20} />
+            <StatusContainer>
+                <StatusText>{loginStatus}</StatusText>
+            </StatusContainer>
+            <Marginer direction="vertical" margin={100} />
             <MutedLink href="#">
                 Don't have an account?
                 <BoldLink href="#" onClick={switchToSignup}>

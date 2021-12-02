@@ -24,7 +24,7 @@ function HeroSection() {
       <HeroContent>
         <HeroH1>A Path to Interactive Learning</HeroH1>
         <HeroP>
-          Let's be real, those lecture videos are too long, and nobody is reading that textbook.
+          Let's be real, those lecture videos are too long, and nobody wants to read that textbook.
         </HeroP>
         <HeroBtnWrapper>
           <Button

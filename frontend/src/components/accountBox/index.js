@@ -100,7 +100,6 @@ const backdropVariants = {
 
 
 function AccountBox(props) {
-    const { initialActive } = props;
     const [isExpanded, setExpanded] = useState(false);
     const [active, setActive] = useState("signin");
 
