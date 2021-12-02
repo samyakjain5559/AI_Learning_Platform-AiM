@@ -78,3 +78,19 @@ export const SubmitButton = styled.button`
         filter: brightness(1.03);
     }
 `;
+
+export const StatusContainer = styled.div`
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2px;
+`;
+
+export const StatusText = styled.p`
+    font-size: 13px;
+    color: rgba(170, 170, 170, 1);
+    font-weight: 500;
+    text-decoration: none;
+`;

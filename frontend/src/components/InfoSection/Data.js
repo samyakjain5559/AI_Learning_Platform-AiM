@@ -6,7 +6,7 @@ export const homeObjOne = {
   topLine: 'The struggle',
   headline: 'Oh great... another learning platform',
   description:
-    `There's no way to get around boring content so let's make it tolerable. How, you ask? Check out our interactive approach to learning!`,
+    `Teaching is not easy and we are not just another platform. Transform the way content is delivered with just a few clicks and let us do the work!`,
   buttonLabel: 'Get Started',
   imgStart: false,
   img: require('../../images/svg-1.svg').default,
