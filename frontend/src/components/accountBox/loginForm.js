@@ -43,12 +43,12 @@ export function LoginForm(props) {
         < BoxContainer >
             <Marginer direction="vertical" margin={20} />
             <FormContainer>
-                <Input type="text" placeholder="Email" onChange={(e) => {
+                <Input type="email" placeholder="Email" onChange={(e) => {
                     setEmailReg(e.target.value);
                     setLoginStatus("");
                 }}
                 />
-                <Input type="text" placeholder="Password" onChange={(e) => {
+                <Input type="password" placeholder="Password" onChange={(e) => {
                     setPasswordReg(e.target.value)
                     setLoginStatus("");
                 }}
@@ -57,7 +57,7 @@ export function LoginForm(props) {
             <Marginer direction="vertical" margin={15} />
             <MutedLink href="#">Forgot Password?</MutedLink>
             <Marginer direction="vertical" margin="2em" />
-            <SubmitButton onClick={handleLoginClick}>Login</SubmitButton>
+            <SubmitButton type="submit" onClick={handleLoginClick}>Login</SubmitButton>
             <Marginer direction="vertical" margin={20} />
             <StatusContainer>
                 <StatusText>{loginStatus}</StatusText>

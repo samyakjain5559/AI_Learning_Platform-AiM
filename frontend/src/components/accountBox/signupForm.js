@@ -50,17 +50,17 @@ export function SignupForm(props) {
                     setFullnameReg(e.target.value)
                 }}
                 />
-                <Input type="text" placeholder="Email" onChange={(e) => {
+                <Input type="email" placeholder="Email" onChange={(e) => {
                     setEmailReg(e.target.value)
                 }}
                 />
-                <Input type="text" placeholder="Password" onChange={(e) => {
+                <Input type="password" placeholder="Password" onChange={(e) => {
                     setPasswordReg(e.target.value)
                 }}
                 />
             </FormContainer>
             <Marginer direction="vertical" margin="2em" />
-            <SubmitButton onClick={handleSignUpClick}>Sign Up</SubmitButton>
+            <SubmitButton type="submit" onClick={handleSignUpClick}>Sign Up</SubmitButton>
             <Marginer direction="vertical" margin={20} />
             <StatusContainer>
                 <StatusText>{signUpStatus}</StatusText>
