@@ -7,25 +7,25 @@ function Projects() {
     <LessonsCard>
       <Lesson>
         <Detail>
-          <Title>Lesson Name</Title>
+          <Title>Calculus Intro</Title>
           <SubTitle>Uploaded 2 days ago</SubTitle>
         </Detail>
       </Lesson>
       <Lesson>
         <Detail>
-          <Title>Lesson Name</Title>
+          <Title>Intro to React</Title>
           <SubTitle>Uploaded 5 days ago</SubTitle>
         </Detail>
       </Lesson>
       <Lesson>
         <Detail>
-          <Title>Lesson Name</Title>
+          <Title>Python Bootcamp</Title>
           <SubTitle>Uploaded 5 days ago</SubTitle>
         </Detail>
       </Lesson>
       <Lesson>
         <Detail>
-          <Title>Lesson Name</Title>
+          <Title>Intro to AI</Title>
           <SubTitle>Uploaded 6 days ago</SubTitle>
         </Detail>
       </Lesson>

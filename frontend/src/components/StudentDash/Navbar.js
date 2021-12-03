@@ -6,7 +6,7 @@ function Navbar() {
     <NavbarContainer>
       <Text>
         Hello
-        <span> Name Here</span>
+        <span> Mike </span>
       </Text>
       <InputContainer>
         <Icon>

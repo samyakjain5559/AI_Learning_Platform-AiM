@@ -9,7 +9,7 @@ function Sidebar() {
     <Container>
       <ProfileContainer>
         <Profile src={ProfileImage} />
-        <Name>Full Name</Name>
+        <Name>Mike</Name>
         <LogoutBtnLink to='/'>Logout</LogoutBtnLink>
       </ProfileContainer>
     </Container>

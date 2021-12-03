@@ -1,6 +1,6 @@
 ---------- create this table in database ----------
 
-CREATE TABLE `eng_4k_web_app`.`user` (
+CREATE TABLE `eng_4k_web_app`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `fullname` VARCHAR(45) NULL,
   `email` VARCHAR(45) NULL,
