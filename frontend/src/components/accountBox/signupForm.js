@@ -21,6 +21,7 @@ export function SignupForm(props) {
     const [fullnameReg, setFullnameReg] = useState("");
     const [emailReg, setEmailReg] = useState("");
     const [passwordReg, setPasswordReg] = useState("");
+    const [account_type_Reg, setaccount_type_Reg] = useState("");
 
     const [signUpStatus, setSignUpStatus] = useState("");
 
@@ -32,6 +33,7 @@ export function SignupForm(props) {
             fullname: fullnameReg,
             email: emailReg,
             password: passwordReg,
+            checkbox_type: account_type_Reg,
         }).then((response) => {
             console.log(response);
 
@@ -39,6 +41,7 @@ export function SignupForm(props) {
                 setSignUpStatus(response.data.message);
             } else {
                 setSignUpStatus("Success!");
+                history.push("/signin");   // This is not working ??
             }
         });
     }
@@ -58,6 +61,17 @@ export function SignupForm(props) {
                     setPasswordReg(e.target.value)
                 }}
                 />
+                <div class="form-group">
+                    <label for="pass"><i class="fa fa-user"></i> Choose an account:</label>
+                    <br></br>
+                    <label><input type="radio" name="signUp" name="checkbox" value="student" id="student"  onChange={(e) => {
+                        setaccount_type_Reg(e.target.value)}} 
+                    /> Student</label>
+                    <br></br>
+                    <label><input type="radio" name="signUp" name="checkbox" value="teacher" id="teacher" onChange={(e) => {
+                        setaccount_type_Reg(e.target.value)}} 
+                    /> Teacher</label>
+                </div>
             </FormContainer>
             <Marginer direction="vertical" margin="2em" />
             <SubmitButton type="submit" onClick={handleSignUpClick}>Sign Up</SubmitButton>
