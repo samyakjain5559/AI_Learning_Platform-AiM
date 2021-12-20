@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../config/db_signup.js');
+var currentUser;
 
 router.post("/sign_up", (req, res) => {
     pool.getConnection((err, conn) => {
@@ -9,9 +10,10 @@ router.post("/sign_up", (req, res) => {
         const fullname = req.body.fullname;
         const email = req.body.email;
         const password = req.body.password;
+        const account_type = req.body.checkbox_type;
 
-        const qry = `INSERT INTO users(fullname, email, password, entry_date) VALUES (?, ?, ?, NOW())`;
-        conn.query(qry, [fullname, email, password], (err, result) => {
+        const qry = `INSERT INTO users(fullname, email, password, entry_date, type) VALUES (?, ?, ?, NOW(), ?)`;
+        conn.query(qry, [fullname, email, password, account_type], (err, result) => {
             conn.release();
             if (err) {
                 console.log(err)
@@ -45,6 +47,59 @@ router.post("/login", (req, res) => {
         });
     });
 });
+
+ router.post("/addCourse", (req, res) => {
+   // we are using "req or request(the incoming part)" for reading the data that was send at this /addtweet url from frontend
+   const name = req.body.lessonName;
+   const tag = req.body.lessonTag;
+   const media = req.body.lessonMedia;
+   const author = currentUser; // Placeholder until implemented with login features
+   const image = req.body.courseimage;
+   const description = req.body.coursedescription;
+
+   pool.getConnection((err, conn) => {
+     if (err) throw err;
+
+     var qry = `INSERT INTO lessondb (Author, LessonName,image,description) VALUES (?, ?, ?, ?)`;
+     conn.query(qry, [author, name, image, description], (err, result) => {
+       if (err) throw err;
+       console.log("lesson added!");
+     });
+     qry = `INSERT INTO lessonmediadb (Media) VALUES (?)`;
+     conn.query(qry, [media], (err, result) => {
+       if (err) throw err;
+       console.log("media added!");
+     });
+     qry = `INSERT INTO lessontagdb (Tag) VALUES (?)`;
+     conn.query(qry, [tag], (err, result) => {
+       conn.release();
+       if (err) throw err;
+       console.log("tags added!");
+     });
+
+     res.redirect("/listLessons");
+     res.end();
+   });
+ });
+
+ router.get("/listLessons", (req, res) => {
+   // When '/list' url is visited, return some json code for front end to fetch
+   pool.getConnection((err, conn) => {
+     if (err) throw err;
+
+     try {
+       const qry = `SELECT l.Author, l.LessonName, lm.Media, lt.Tag FROM lessondb AS l INNER JOIN lessonmediadb AS lm ON l.LessonId=lm.LessonId INNER JOIN lessontagdb AS lt ON lm.LessonId=lt.LessonId WHERE l.Author=?`;
+       conn.query(qry, [currentUser], (err, result) => {
+         conn.release();
+         if (err) throw err;
+         res.send(JSON.stringify(result));
+       });
+     } catch (err) {
+       console.log(err);
+       res.end();
+     }
+   });
+ });
 
 
 // ======================== Currently working on implementing these below ====================================
@@ -86,58 +141,6 @@ router.post("/login", (req, res) => {
 //   });
 // });
 
-// router.post("/addCourse", (req, res) => {
-//   // we are using "req or request(the incoming part)" for reading the data that was send at this /addtweet url from frontend
-//   const name = req.body.lessonName;
-//   const tag = req.body.lessonTag;
-//   const media = req.body.lessonMedia;
-//   const author = currentUser; // Placeholder until implemented with login features
-//   const image = req.body.courseimage;
-//   const description = req.body.coursedescription;
-
-//   pool.getConnection((err, conn) => {
-//     if (err) throw err;
-
-//     var qry = `INSERT INTO lessondb (Author, LessonName,image,description) VALUES (?, ?, ?, ?)`;
-//     conn.query(qry, [author, name, image, description], (err, result) => {
-//       if (err) throw err;
-//       console.log("lesson added!");
-//     });
-//     qry = `INSERT INTO lessonmediadb (Media) VALUES (?)`;
-//     conn.query(qry, [media], (err, result) => {
-//       if (err) throw err;
-//       console.log("media added!");
-//     });
-//     qry = `INSERT INTO lessontagdb (Tag) VALUES (?)`;
-//     conn.query(qry, [tag], (err, result) => {
-//       conn.release();
-//       if (err) throw err;
-//       console.log("tags added!");
-//     });
-
-//     res.redirect("/listLessons");
-//     res.end();
-//   });
-// });
-
-// router.get("/listLessons", (req, res) => {
-//   // When '/list' url is visited, return some json code for front end to fetch
-//   pool.getConnection((err, conn) => {
-//     if (err) throw err;
-
-//     try {
-//       const qry = `SELECT l.Author, l.LessonName, lm.Media, lt.Tag FROM lessondb AS l INNER JOIN lessonmediadb AS lm ON l.LessonId=lm.LessonId INNER JOIN lessontagdb AS lt ON lm.LessonId=lt.LessonId WHERE l.Author=?`;
-//       conn.query(qry, [currentUser], (err, result) => {
-//         conn.release();
-//         if (err) throw err;
-//         res.send(JSON.stringify(result));
-//       });
-//     } catch (err) {
-//       console.log(err);
-//       res.end();
-//     }
-//   });
-// });
 
 // router.get("/searchLessons", (req, res) => {
 //   // When '/list' url is visited, return some json code for front end to fetch
