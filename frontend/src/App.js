@@ -1,19 +1,29 @@
-import React from 'react';
 import './App.css';
-
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from './pages';
-import SigninPage from './pages/signin';
-import StudentDashPage from './pages/student_dash';
+import Home from './components/Home';
+import displayit from './components/Test_display';
+import Sign_Up from './components/Sign_Up';
+import CourseAdd from './components/Course_Lessons_add'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route path='/' component={Home} exact />
-        <Route path='/signin' component={SigninPage} exact />
-        <Route path='/studentdash' component={StudentDashPage} exact />
-      </Switch>
+      <div className="App">
+          <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/display">Display</a>
+                </li>
+          </ul> 
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/display" exact component={displayit} />
+            <Route path="/sign_up" exact component={Sign_Up} />
+            <Route path="/course_add" exact component={CourseAdd} />
+          </Switch>
+      </div>
     </Router>
   );
 }
