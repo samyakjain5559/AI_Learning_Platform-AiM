@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AccountContext } from '../accountBox/accountContext';
 import { Button } from '../ButtonElements';
 import {
   InfoContainer,
@@ -14,6 +15,7 @@ import {
   ImgWrap,
   Img
 } from './InfoElements';
+
 
 const InfoSection = ({
   lightBg,
