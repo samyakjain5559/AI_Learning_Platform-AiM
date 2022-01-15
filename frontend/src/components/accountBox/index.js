@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from 'framer-motion/dist/framer-motion';
-import { LoginForm } from "./loginForm";
+// import { LoginForm } from "./loginForm";
 import { AccountContext } from "./accountContext";
-import { SignupForm } from "./signupForm";
+// import { SignupForm } from "./signupForm";
+import { LoginInPage } from "./LoginInPage";
+import { SignUpPage } from "./SignUpPage";
 
 const BoxContainer = styled.div`
     width: 450px;
@@ -157,8 +159,8 @@ function AccountBox(props) {
                     )}
                 </TopContainer>
                 <InnerContainer>
-                    {active === "signin" && <LoginForm />}
-                    {active === "signup" && <SignupForm />}
+                    {active === "signin" && <signupForm />}
+                    {active === "signup" && <loginForm />}
                 </InnerContainer>
             </BoxContainer>
         </AccountContext.Provider>

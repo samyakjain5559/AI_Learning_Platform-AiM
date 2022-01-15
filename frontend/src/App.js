@@ -7,6 +7,7 @@ import SigninPage from './pages/signin';
 import StudentDashPage from './pages/student_dash';
 import Adder from "./components/Teacher_Dash/Adder";
 import List from "./components/Teacher_Dash/List";
+import { PrivateRoute } from './auth/PrivateRoute';
 
 function App() {
   return (

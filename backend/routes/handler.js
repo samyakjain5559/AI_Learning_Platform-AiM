@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+const jwt  = require('jsonwebtoken');
 const express = require('express');
 const router = express.Router();
 const pool = require('../config/db_signup.js');
@@ -22,6 +24,59 @@ router.post("/sign_up", (req, res) => {
                 res.send({ message: 'Account created.' })
             }
         });
+    });
+});
+
+router.post('/api/signup', async (req, res) => {
+    pool.getConnection( (err, conn) => {
+        if (err) throw err;
+          const { email, password, fullname, account_type } = req.body;
+          const qry = `SELECT * FROM eng_4k_web_app.users WHERE email = ?`
+          conn.query(qry, email, async (err, result) => {
+              if(err) {
+                res.send({ err: err });
+              } else {
+                  if (result.length > 0) { 
+                    res.sendStatus(409); // Conflict error code (email exists)
+                  } else {
+                      const passwordHash = await bcrypt.hash(password, 10);
+                      const qry = `INSERT INTO users(fullname, email, password, entry_date, type) VALUES (?, ?, ?, NOW(), ?)`;
+                      const insertedId = null;
+                      conn.query(qry, [fullname, email, passwordHash, account_type], (err, result) => {
+                        conn.release();
+                        if (err) {
+                            console.log(err)
+                        } else {
+                            console.log(result);
+                            res.send({ message: 'Account created.' })
+                            insertedId = result.insertId;
+                        }
+                    });
+                    jwt.sign({
+                        id: insertedId,
+                        email,
+                        fullname, 
+                        account_type, 
+                    },
+                      process.env.JWT_SECRET, 
+                    {
+                        expiresIn: '2d',
+                    }, 
+                    (err, token) => {
+                        if(err) {
+                            return res.status(500).send(err);
+                        }
+                        res.status(200).json({ token });
+                    });
+                  }
+              }
+          });
+    });
+});
+
+router.post('/api/login', async (res, req) => {
+    pool.getConnection((err, conn) => {
+        if (err) throw err;
     });
 });
 
