@@ -13,7 +13,6 @@ import {
     StatusContainer,
     StatusText,
 } from "./common";
-import e from "cors";
 
 export function SignupForm(props) {
     const { switchToSignin } = useContext(AccountContext);
