@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { AccountContext } from '../accountBox/accountContext';
+import React from 'react';
 import { Button } from '../ButtonElements';
 import {
   InfoContainer,
