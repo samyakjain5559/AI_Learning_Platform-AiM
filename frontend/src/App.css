@@ -19,3 +19,13 @@ li {
   margin: 5;
   padding: 5;
 }
+
+.nav-link {
+  color: black;
+}
+
+.center {
+  margin: auto;
+  width: 60%;
+  height: 100%;
+}
