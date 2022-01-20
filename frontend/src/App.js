@@ -11,6 +11,7 @@ import CreateLesson from "./components/Teacher_Dash_Test/lesson/create";
 import ListLesson from "./components/Teacher_Dash_Test/lesson/list";
 import ViewCourse from "./components/Teacher_Dash_Test/course/view";
 import ListCourseLesson from "./components/Teacher_Dash_Test/course/listlesson";
+import Adder from "./components/Teacher_Dash/Adder";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/lesson/create" exact component={CreateLesson} />
         <Route path="/lesson/list" exact component={ListLesson} />
         <Route path="/course/view" exact component={ViewCourse} />
+        <Route path="/addLessons" exact component={Adder} />
         <Route path="/course/listlesson" exact component={ListCourseLesson} />
       </Switch>
     </Router>

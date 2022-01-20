@@ -112,6 +112,9 @@ router.get("/listLessons", (req, res) => {
 router.post("/createCourse1", (req, res) => {
   const courseName = req.body.courseName;
   const courseDescription = req.body.courseDescription;
+  const courseTags = req.body.courseTags;
+  const courseMedia = req.body.courseMedia;
+  const courseImage = req.body.courseImage;
   pool.getConnection((err, conn) => {
     if (err) throw err;
     console.log(
@@ -121,13 +124,17 @@ router.post("/createCourse1", (req, res) => {
         courseDescription
     );
     try {
-      var qry = `INSERT INTO coursedb (CourseName, CourseDescription) VALUES (?, ?)`;
-      conn.query(qry, [courseName, courseDescription], (err, result) => {
-        if (err) throw err;
-        console.log("lesson added!");
-        res.redirect("/course/list");
-        res.end();
-      });
+      var qry = `INSERT INTO coursedb (CourseName, CourseDescription, CourseTags, CourseMedia, CourseImage) VALUES (?, ?, ?, ? ,?)`;
+      conn.query(
+        qry,
+        [courseName, courseDescription, courseTags, courseMedia, courseImage],
+        (err, result) => {
+          if (err) throw err;
+          console.log("lesson added!");
+          res.redirect("/course/list");
+          res.end();
+        }
+      );
     } catch (err) {
       console.log("Error adding course to database.");
     }

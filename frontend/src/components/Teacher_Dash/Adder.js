@@ -60,16 +60,7 @@ function Adder() {
             </div>
           </div>
         </nav>
-        {/**<h1 class="mt-5">Enter Course information</h1>
-        <form method="POST" action="/addCourse">
-          <div class="form-row">
-            <div class="col">
-	@@ -115,6 +115,81 @@ function Adder() {
-            </div>
-          </div>
-          <input type="submit" value="Send" class="btn btn-primary mb-2" />
-        </form>**/}
-        <form method="POST" action="/addCourse">
+        <form method="POST" action="/createCourse1">
           <h1 class="mt-5" style={{ color: "#7EB10A", textAlign: "center" }}>
             Enter Course Information
           </h1>
@@ -155,7 +146,7 @@ function Adder() {
                 <div style={{ marginTop: "15px" }}>
                   <input
                     style={{ width: "400px" }}
-                    name="lessonName"
+                    name="courseName"
                     type="text"
                     class="form-control"
                     placeholder="i.e. ENG4000, Introduction to Calculus"
@@ -172,7 +163,7 @@ function Adder() {
                 <div style={{ marginTop: "15px" }}>
                   <input
                     style={{ width: "400px" }}
-                    name="lessonTag"
+                    name="courseTags"
                     type="text"
                     class="form-control"
                     placeholder="i.e. Physics, Math, Engineering"
@@ -189,7 +180,7 @@ function Adder() {
                 <div style={{ marginTop: "15px" }}>
                   <input
                     style={{ width: "400px" }}
-                    name="lessonMedia"
+                    name="courseMedia"
                     type="text"
                     class="form-control"
                     placeholder="i.e. PDF, MP4, etc."
@@ -206,7 +197,7 @@ function Adder() {
                 <div style={{ marginTop: "15px" }}>
                   <input
                     style={{ width: "400px" }}
-                    name="courseimage"
+                    name="courseImage"
                     type="text"
                     class="form-control"
                     placeholder="i.e. google image link"
@@ -223,7 +214,7 @@ function Adder() {
                 <div style={{ marginTop: "15px" }}>
                   <input
                     style={{ width: "400px" }}
-                    name="coursedescription"
+                    name="courseDescription"
                     type="text"
                     class="form-control"
                     placeholder="i.e. Summary of the course"
