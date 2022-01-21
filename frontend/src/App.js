@@ -1,26 +1,33 @@
+import React from "react";
 import "./App.css";
-import Home from "./components/Home";
-import Nav from "./components/Nav";
-import displayit from "./components/Test_display";
-import Sign_Up from "./components/Sign_Up";
-import Adder from "./components/Adder";
-import List from "./components/List";
-import Search from "./components/Search";
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./pages";
+import SigninPage from "./pages/signin";
+import StudentDashPage from "./pages/student_dash";
+import CreateCourse from "./components/Teacher_Dash_Test/course/create";
+import ListCourse from "./components/Teacher_Dash_Test/course/list";
+import CreateLesson from "./components/Teacher_Dash_Test/lesson/create";
+import ListLesson from "./components/Teacher_Dash_Test/lesson/list";
+import ViewCourse from "./components/Teacher_Dash_Test/course/view";
+import ListCourseLesson from "./components/Teacher_Dash_Test/course/listlesson";
+import Adder from "./components/Teacher_Dash/Adder";
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/display" exact component={displayit} />
-          <Route path="/sign_up" exact component={Sign_Up} />
-          <Route path="/addLessons" exact component={Adder} />
-          <Route path="/listLessons" exact component={List} />
-          <Route path="/searchLessons" exact component={Search} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route path="/" component={Home} exact />
+        <Route path="/signin" component={SigninPage} exact />
+        <Route path="/studentdash" component={StudentDashPage} exact />
+        <Route path="/course/create" exact component={CreateCourse} />
+        <Route path="/course/list" exact component={ListCourse} />
+        <Route path="/lesson/create" exact component={CreateLesson} />
+        <Route path="/lesson/list" exact component={ListLesson} />
+        <Route path="/course/view" exact component={ViewCourse} />
+        <Route path="/addLessons" exact component={Adder} />
+        <Route path="/course/listlesson" exact component={ListCourseLesson} />
+      </Switch>
     </Router>
   );
 }
