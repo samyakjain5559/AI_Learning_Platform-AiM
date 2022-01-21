@@ -40,9 +40,9 @@ router.post('/api/signup', async (req, res) => {
                     res.sendStatus(409); // Conflict error code (email exists)
                   } else {
                       const passwordHash = await bcrypt.hash(password, 10);
-                      const qry = `INSERT INTO users(fullname, email, password, entry_date, type) VALUES (?, ?, ?, NOW(), ?)`;
+                      const qry2 = `INSERT INTO users(fullname, email, password, entry_date, type) VALUES (?, ?, ?, NOW(), ?)`;
                       const insertedId = null;
-                      conn.query(qry, [fullname, email, passwordHash, account_type], (err, result) => {
+                      conn.query(qry2, [fullname, email, passwordHash, account_type], (err, result) => {
                         conn.release();
                         if (err) {
                             console.log(err)
@@ -77,6 +77,34 @@ router.post('/api/signup', async (req, res) => {
 router.post('/api/login', async (res, req) => {
     pool.getConnection((err, conn) => {
         if (err) throw err;
+        const { email, password } = req.body;
+
+        const qry = `SELECT * FROM eng_4k_web_app.users WHERE email = ?`;
+        conn.query(qry, [email], async (err, result) => {
+          conn.release();
+          if (err) {
+              res.send({ err: err })
+          } else {
+              if (result.length > 0) {
+                  const isCorrect = await bcrypt.compare(password, result.password); 
+                  const id = result.insertedId;
+                  if (isCorrect) {
+                    jwt.sign({ id, email }, process.env.JWT_SECRET, { expiresIn: '2d' }, (err, token) => {
+                      if (err) {
+                        res.status(500).json(err);
+                      } else {
+                        res.status(200).json({ token });
+                      }
+                    });
+                  } else {
+                    res.sendStatus(401);
+                  }
+                } else {
+                  res.sendStatus(401);
+              }
+          }
+      });
+
     });
 });
 

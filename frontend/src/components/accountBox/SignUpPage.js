@@ -12,9 +12,11 @@ import { useContext, useState } from "react";
 import { Marginer } from "../marginer";
 import { AccountContext } from "./accountContext";
 import { useHistory } from "react-router";
+import axios from 'axios';
+import { useToken } from '../../auth/useToken';
 
 export const SignUpPage = () => {
-
+    const [token, setToken] = useToken();
     const { switchToSignin } = useContext(AccountContext);
     const [errorMessage, setErrorMessage] = useState('');
     const [fullnameValue, setFullnameValue] = useState('');
@@ -26,7 +28,16 @@ export const SignUpPage = () => {
     const history = useHistory();
 
     const onSignUpClicked = async () => {
-        alert('Sign up not implemented yet');
+        const response = await axios.post('http://localhost:4000/api/signup', {
+            fullname: fullnameValue,
+            email: emailValue,
+            password: passwordValue,
+            account_type: accountTypeValue
+        });
+        console.log(response.data)
+        const { token } = response.data;
+        setToken(token);
+        history.push('/');
     }
     return (
         <BoxContainer>
