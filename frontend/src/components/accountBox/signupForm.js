@@ -13,7 +13,6 @@ import {
     StatusContainer,
     StatusText,
 } from "./common";
-import { useHistory } from "react-router";
 
 export function SignupForm(props) {
     const { switchToSignin } = useContext(AccountContext);
@@ -24,8 +23,6 @@ export function SignupForm(props) {
     const [account_type_Reg, setaccount_type_Reg] = useState("");
 
     const [signUpStatus, setSignUpStatus] = useState("");
-
-    const history = useHistory();
 
     function handleSignUpClick(e) {
         e.preventDefault();
@@ -39,9 +36,6 @@ export function SignupForm(props) {
 
             if (response.data.message) {
                 setSignUpStatus(response.data.message);
-            } else {
-                setSignUpStatus("Success!");
-                history.push("/signin");   // This is not working ??
             }
         });
     }
@@ -73,15 +67,15 @@ export function SignupForm(props) {
                     /> Teacher</label>
                 </div>
             </FormContainer>
-            <Marginer direction="vertical" margin="2em" />
-            <SubmitButton type="submit" onClick={handleSignUpClick}>Sign Up</SubmitButton>
+            <Marginer direction="vertical" margin="1em" />
+            <SubmitButton type="submit" onClick={(e) => {handleSignUpClick(e); switchToSignin()}}>Sign Up</SubmitButton>
             <Marginer direction="vertical" margin={20} />
             <StatusContainer>
                 <StatusText>{signUpStatus}</StatusText>
             </StatusContainer>
-            <Marginer direction="vertical" margin={115} />
+            <Marginer direction="vertical" margin={20} />
             <MutedLink href="#">
-                Already have an account?
+                Already have an account ?
                 <BoldLink href="#" onClick={switchToSignin}>
                     Sign in
                 </BoldLink>
