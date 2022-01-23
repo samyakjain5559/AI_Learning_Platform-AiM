@@ -4,13 +4,13 @@ Step 1 Download Node js from Google
 
 Step 2 Open 2 terminal in Vs code
 ```javascript
-   In first termal do -> cd frontbend -> npm i
+   In first termal do -> cd frontend -> npm i
    In 2nd terminal do -> cd backend -> npm i
 ```
 
 Step 3 Open 2 terminal in Vs code
 ```javascript
-   In first termal do -> cd frontbend -> npm start
+   In first termal do -> cd frontend -> npm start
    In 2nd terminal do -> cd backend -> npm run server
 ```
 
