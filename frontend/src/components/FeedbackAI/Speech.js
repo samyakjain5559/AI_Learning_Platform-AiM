@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
+import axios from "axios"; 
 import { StatusContainer, StatusText} from "../accountBox/common";
 
 export function Speech() {
@@ -39,6 +39,11 @@ export function Speech() {
                 setAnalyzeStatus(response.data.message);
             }
         }).catch(err => console.log());
+
+        axios.get('http://localhost:4000/get_feedback')
+        .then((response) => {
+            console.log(response);
+        });
     }
 
     return (

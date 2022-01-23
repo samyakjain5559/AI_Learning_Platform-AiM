@@ -4,6 +4,9 @@ const multer = require('multer');
 const router = express.Router();
 const pool = require("../config/db_signup.js");
 
+var email_login ="";
+var password_login ="";
+
 var currentUser;
 
 router.post("/sign_up", (req, res) => {
@@ -34,11 +37,11 @@ router.post("/sign_up", (req, res) => {
 router.post("/login", (req, res) => {
   pool.getConnection((err, conn) => {
     if (err) throw err;
-    const email = req.body.email;
-    const password = req.body.password;
+    email_login = req.body.email;
+    password_login = req.body.password;
 
     const qry = `SELECT * FROM eng_4k_web_app.users WHERE email = ? AND password = ?`;
-    conn.query(qry, [email, password], (err, result) => {
+    conn.query(qry, [email_login, password_login], (err, result) => {
       conn.release();
       if (err) {
         res.send({ err: err });
@@ -179,6 +182,7 @@ router.post("/viewCourse1", (req, res) => {
       conn.query(qry, [courseId], (err, result) => {
         conn.release();
         if (err) throw err;
+        console.log(`Current user is ${email_login}`);
         res.redirect("/course/view");
         res.end();
       });
@@ -269,7 +273,25 @@ router.get("/listLessons", (req, res) => {
 const upload = multer();
 router.post("/speech_to_text", upload.single("file"), (req, res) => {
   const file = req.file;
+  const file_name = req.body.name;
+  console.log(file.originalname);
+  
+  pool.getConnection((err, conn) => {
+    if (err) throw err;
 
+    var qry = `UPDATE users SET feedback_file = ? WHERE (email = ?)`;
+    conn.query(qry, [file.originalname, email_login], (err, result) => {
+      if (err) throw err;
+      console.log("feedback received");
+    });
+    res.end();
+  });
+});
+
+// get file name from db based on email which is recent user and global variable
+// file that student is uploading must be in reosurces folder but it can choose any file from its resources folder.
+// USE ONLY single channel files , use audacity recorder and change to single channel -- https://forum.audacityteam.org/viewtopic.php?t=60393
+router.get("/get_feedback", (req, res) => {
   // Require Google API key -- put GOOGLE_APPLICATION_CREDENTIALS=KEY in .env
   require('dotenv').config();
 
@@ -288,9 +310,39 @@ router.post("/speech_to_text", upload.single("file"), (req, res) => {
     // Convert to .wav
     const ffmpeg = require('fluent-ffmpeg');
     ffmpeg.setFfmpegPath(ffmpegInstaller.path);
-    let track = './resources/audio.m4a'; // source path
+    var track = '';
+    pool.getConnection((err, conn) => {
+      if (err) throw err;
+  
+      try {
+        const qry = `SELECT feedback_file FROM users WHERE email=?`;
+        conn.query(qry, [email_login], (err, result) => {
+          conn.release();
+          if (err) throw err;
+          res.send(JSON.stringify(result));
+          console.log("Current user is " + email_login);
+          console.log(result[0].feedback_file);
+          track = './resources/'+result[0].feedback_file; // source path
+          console.log("full track is " + track);
+          ffmpeg(track)
+          .toFormat('wav')
+          .on('error', (err) => {
+            console.log('An error occurred: ' + err.message);
+          })
+          .on('end', () => {
+            console.log('Audio converted!');
+          })
+          .save('./resources/audio.wav'); // destination path
+        });
+      } catch (err) {
+        console.log(err);
+        res.end();
+      }
+    });
 
-    ffmpeg(track)
+    //let track = './resources/audio.m4a'; // source path
+
+    /*ffmpeg(track)
       .toFormat('wav')
       .on('error', (err) => {
         console.log('An error occurred: ' + err.message);
@@ -298,7 +350,7 @@ router.post("/speech_to_text", upload.single("file"), (req, res) => {
       .on('end', () => {
         console.log('Audio converted!');
       })
-      .save('./resources/audio.wav'); // destination path
+      .save('./resources/audio.wav'); // destination path*/
 
     // Give the program some time to save to destination before accessing it
     await sleep(1000)
@@ -360,7 +412,7 @@ router.post("/speech_to_text", upload.single("file"), (req, res) => {
   }
   main().catch(console.error);
 
-  res.send({ message: `Conversion reached`})
+  //res.send({ message: `Conversion reached`})
 });
 
 // TODO: Use JWT token to add user as author of lesson into database
