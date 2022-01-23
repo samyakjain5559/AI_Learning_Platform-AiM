@@ -189,6 +189,7 @@ router.post("/viewCourse1", (req, res) => {
   });
 });
 
+
 // TODO: Use JWT token to list courses created by the current user
 router.get("/listCourseLesson1", (req, res) => {
   console.log(
@@ -196,22 +197,19 @@ router.get("/listCourseLesson1", (req, res) => {
   );
   pool.getConnection((err, conn) => {
     if (err) throw err;
-    const email = req.body.email;
-    const password = req.body.password;
 
-    const qry = `SELECT * FROM eng_4k_web_app.users WHERE email = ? AND password = ?`;
-    conn.query(qry, [email, password], (err, result) => {
-      conn.release();
-      if (err) {
-        res.send({ err: err })
-      } else {
-        if (result.length > 0) {
-          res.send(result)
-        } else {
-          res.send({ message: 'Incorrect email and/or password.' })
-        }
-      }
-    });
+    try {
+      console.log("here");
+      const qry = `SELECT * FROM lessondb WHERE courseId=?`;
+      conn.query(qry, [courseId], (err, result) => {
+        conn.release();
+        if (err) throw err;
+        res.send(JSON.stringify(result));
+      });
+    } catch (err) {
+      console.log(err);
+      res.end();
+    }
   });
 });
 
@@ -363,21 +361,6 @@ router.post("/speech_to_text", upload.single("file"), (req, res) => {
   main().catch(console.error);
 
   res.send({ message: `Conversion reached`})
-});
-
-    try {
-      console.log("here");
-      const qry = `SELECT * FROM lessondb WHERE courseId=?`;
-      conn.query(qry, [courseId], (err, result) => {
-        conn.release();
-        if (err) throw err;
-        res.send(JSON.stringify(result));
-      });
-    } catch (err) {
-      console.log(err);
-      res.end();
-    }
-  });
 });
 
 // TODO: Use JWT token to add user as author of lesson into database
