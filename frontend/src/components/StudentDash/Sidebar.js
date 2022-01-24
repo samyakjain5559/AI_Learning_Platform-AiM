@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Badge from "./Badge";
 import ProfileImage from "../../images/svg-1.svg";
-import { Link as LinkR } from 'react-router-dom';
+import { Link as LinkR } from 'react-router-dom'; 
 
 function Sidebar() {
   return (
@@ -11,6 +11,7 @@ function Sidebar() {
         <Profile src={ProfileImage} />
         <Name>Full Name</Name>
         <LogoutBtnLink to='/'>Logout</LogoutBtnLink>
+        <LogoutBtnLink to='/feedback'>FeedBack</LogoutBtnLink>
       </ProfileContainer>
     </Container>
   );
