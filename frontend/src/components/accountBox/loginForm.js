@@ -17,6 +17,7 @@ export function LoginForm(props) {
   const { switchToSignup } = useContext(AccountContext);
   const [emailReg, setEmailReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
+  const [userType, setUserType] = useState("");
   const [loginStatus, setLoginStatus] = useState("");
   const history = useHistory();
   function handleLoginClick(e) {
@@ -25,14 +26,16 @@ export function LoginForm(props) {
       .post("http://localhost:4000/login", {
         email: emailReg,
         password: passwordReg,
+        type: userType,
       })
       .then((response) => {
         console.log(response);
         if (response.data.message) {
           setLoginStatus(response.data.message);
         } else {
-          history.push("/addLessons"); // login successful => go to teacher page
-          //history.push("/studentdash"); // login successful => go to student page
+          if (userType == "teacher") {
+            history.push("/addLessons"); // login successful => go to teacher page
+          } else history.push("/studentdash"); // login successful => go to student page
         }
       });
   }

@@ -1,18 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
 function Navbar() {
+  // Used for fetching from backend
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
+  const [items, setItems] = useState([]);
+
+  const fetchItems = async () => {
+    const data = await fetch("/userinfo"); // fetches '/listLessons' url data from port 4000
+    const items = await data.json(); // sets fetches as json items
+    setItems(items);
+  };
+
+  function handleSearch(e) {
+    var search = e.target.value;
+
+    //rn typing into searchbar only saves the search into this variable
+    //need to invoke the "searchCourse" query in handler.js with the 'search' as its input
+    //then display the courses returned in drop down
+  }
+
   return (
     <NavbarContainer>
       <Text>
-        Hello
-        <span> Name Here</span>
+        Hello,
+        {items.map((item) => (
+          <span> {item.fullname.split(" ")[0]}</span>
+        ))}
       </Text>
       <InputContainer>
         <Icon>
           <FiSearch />
         </Icon>
-        <Input type="text" placeholder="Search for lessons" />
+        <SearchBar
+          type="text"
+          onKeyUp={handleSearch}
+          placeholder="Search for lessons"
+        />
       </InputContainer>
     </NavbarContainer>
   );
@@ -56,7 +83,7 @@ const Icon = styled.div`
     color: #555555;
   }
 `;
-const Input = styled.input`
+const SearchBar = styled.input`
   border: none;
   background-color: #ffffff;
   border-top-right-radius: 0.5rem;

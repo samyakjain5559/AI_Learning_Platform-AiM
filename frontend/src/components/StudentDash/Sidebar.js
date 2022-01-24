@@ -1,17 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Badge from "./Badge";
 import ProfileImage from "../../images/svg-1.svg";
-import { Link as LinkR } from 'react-router-dom'; 
+import { Link as LinkR } from "react-router-dom";
 
 function Sidebar() {
+  // backend fetch
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
+  const [items, setItems] = useState([]);
+
+  const fetchItems = async () => {
+    const data = await fetch("/userinfo"); // fetches '/listLessons' url data from port 4000
+    const items = await data.json(); // sets fetches as json items
+    setItems(items);
+  };
+
   return (
     <Container>
       <ProfileContainer>
-        <Profile src={ProfileImage} />
-        <Name>Full Name</Name>
-        <LogoutBtnLink to='/'>Logout</LogoutBtnLink>
-        <LogoutBtnLink to='/feedback'>FeedBack</LogoutBtnLink>
+        {items.map((item) => (
+          <div>
+            <Profile src={ProfileImage} />
+            <Name>{item.fullname}</Name>
+          </div>
+        ))}
+        <LogoutBtnLink to="/">Logout</LogoutBtnLink>
+        <LogoutBtnLink to="/feedback">FeedBack</LogoutBtnLink>
       </ProfileContainer>
     </Container>
   );
@@ -21,8 +38,12 @@ const Container = styled.div`
   width: 20%;
   height: 100% !important;
   background: linear-gradient(
-    to right top, #051937, #05162e, 
-    #051224, #030d1b, #000712
+    to right top,
+    #051937,
+    #05162e,
+    #051224,
+    #030d1b,
+    #000712
   );
   display: flex;
   flex-direction: column;
@@ -56,7 +77,7 @@ const Name = styled.h1`
 
 const LogoutBtnLink = styled(LinkR)`
   border-radius: 50px;
-  background-color: #7EB10A;
+  background-color: #7eb10a;
   margin-top: 10px;
   white-space: nowrap;
   padding: 10px 22px;

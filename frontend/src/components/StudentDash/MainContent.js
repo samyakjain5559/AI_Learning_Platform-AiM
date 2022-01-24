@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Navbar from "./Navbar";
-import Lessons from "./Lessons";
+import Courses from "./Courses";
 import LessonRecommend from "./LessonRecommend";
 import Score from "./Score";
 
@@ -20,8 +20,8 @@ function MainContent() {
         </RowContainer>
         <RowContainer>
           <RecentContainer>
-            <TitleText>Recent Lessons</TitleText>
-            <Lessons />
+            <TitleText>Your Courses</TitleText>
+            <Courses />
           </RecentContainer>
         </RowContainer>
       </SubContainer>
@@ -31,7 +31,7 @@ function MainContent() {
 
 const Container = styled.div`
   width: 80%;
-  background-color: #7EB10A;
+  background-color: #7eb10a;
   margin: 1rem 8rem 1rem 4rem;
   @media screen and (min-width: 320px) and (max-width: 1080px) {
     display: flex;
