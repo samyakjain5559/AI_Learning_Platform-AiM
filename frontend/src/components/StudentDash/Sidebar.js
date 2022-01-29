@@ -1,16 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Badge from "./Badge";
 import ProfileImage from "../../images/svg-1.svg";
-import { Link as LinkR } from 'react-router-dom';
+import { Link as LinkR } from 'react-router-dom'; 
 
 function Sidebar() {
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
+  const [items, setItems] = useState([]);
+  const fetchItems = async () => {
+    const data = await fetch("http://localhost:4000/getuser"); // /gettweets and /adtweet is running on port of backend
+    const items = await data.json();
+    setItems(items);
+  };
+
   return (
     <Container>
       <ProfileContainer>
         <Profile src={ProfileImage} />
-        <Name>Full Name</Name>
+        {items.map((item) => (
+           <Name>{item.fullname}</Name>       
+        ))}
         <LogoutBtnLink to='/'>Logout</LogoutBtnLink>
+        <LogoutBtnLink to='/feedback'>FeedBack</LogoutBtnLink>
+        <LogoutBtnLink to='/quizzes'>Attempt Quiz</LogoutBtnLink>
       </ProfileContainer>
     </Container>
   );
