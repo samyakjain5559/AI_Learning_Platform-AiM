@@ -20,7 +20,7 @@ function MainContent() {
         </RowContainer>
         <RowContainer>
           <RecentContainer>
-            <TitleText>Recent Lessons</TitleText>
+            <TitleText>Recent Courses</TitleText>
             <Lessons />
           </RecentContainer>
         </RowContainer>
