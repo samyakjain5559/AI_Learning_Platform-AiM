@@ -15,6 +15,7 @@
     "react-bootstrap": "^1.6.3",
     "react-dom": "^17.0.1",
     "react-icons": "^4.3.1",
+    "react-quiz-component": "^0.3.9",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.0",
     "react-scroll": "^1.8.4",

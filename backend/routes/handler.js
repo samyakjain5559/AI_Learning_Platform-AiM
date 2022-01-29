@@ -34,6 +34,27 @@ router.post("/sign_up", (req, res) => {
   });
 });
 
+router.get("/getuser", (req, res) => {
+  // When '/list' url is visited, return some json code for front end to fetch
+  pool.getConnection((err, conn) => {
+    if (err) throw err;
+
+    try {
+      const qry = `SELECT * FROM eng_4k_web_app.users WHERE email = ? AND password = ?`;
+      conn.query(qry, [email_login, password_login], (err, result) => {
+        conn.release();
+        if (err) throw err;
+
+        console.log(res);
+        res.send(JSON.stringify(result));
+      });
+    } catch (err) {
+      console.log(err);
+      res.end();
+    }
+  });
+});
+
 router.post("/login", (req, res) => {
   pool.getConnection((err, conn) => {
     if (err) throw err;

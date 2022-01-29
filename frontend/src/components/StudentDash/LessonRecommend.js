@@ -7,7 +7,7 @@ function LessonRecommend() {
   return (
     <RecommendLesson>
       <CardContent>
-        <Badge content="Add recommended lesson here." />
+        <Badge content="Add recommended Course here." />
       </CardContent>
     </RecommendLesson>
   );

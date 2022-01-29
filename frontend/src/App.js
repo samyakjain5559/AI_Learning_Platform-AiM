@@ -14,6 +14,7 @@ import ListCourseLesson from "./components/Teacher_Dash_Test/course/listlesson";
 import Adder from "./components/Teacher_Dash/Adder";
 import List from "./components/Teacher_Dash/List";
 import FeedbackAI from './components/FeedbackAI';
+import quiz from "./components/quiz/quiz";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/course/listlesson" exact component={ListCourseLesson} />
         <Route path="/listLessons" exact component={List} />
         <Route path="/feedback" exact component={FeedbackAI} />
+        <Route path="/quizzes" exact component={quiz} />
       </Switch>
     </Router>
   );
