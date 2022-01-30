@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
 function Navbar() {
+  
+  useEffect(() => {
+    fetchItems();
+  }, []);
+  const [items, setItems] = useState([]);
+  const fetchItems = async () => {
+    const data = await fetch("http://localhost:4000/getuser"); // /gettweets and /adtweet is running on port of backend
+    const items = await data.json();
+    setItems(items);
+  };
+
   return (
     <NavbarContainer>
+
       <Text>
         Hello
-        <span> Name Here</span>
+        {items.map((item) => (
+           <span> {item.fullname}</span>       
+        ))}
       </Text>
       <InputContainer>
         <Icon>
