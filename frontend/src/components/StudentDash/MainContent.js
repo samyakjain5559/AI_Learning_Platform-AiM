@@ -4,9 +4,11 @@ import Navbar from "./Navbar";
 import Lessons from "./Lessons";
 import LessonRecommend from "./LessonRecommend";
 import Score from "./Score";
+import Commentsection from "./commentsection"
 
 function MainContent() {
   return (
+    <div>
     <Container>
       <Navbar />
       <SubContainer>
@@ -26,8 +28,21 @@ function MainContent() {
         </RowContainer>
       </SubContainer>
     </Container>
+     <Container2>
+        
+     </Container2>
+   </div>
   );
 }
+
+const Container2 = styled.div`
+  display: flex;
+  height: 100vh;
+  background: #7EB10A;
+  @media screen and (min-width: 320px) and (max-width: 1080px) {
+    flex-direction: column;
+  }
+`;
 
 const Container = styled.div`
   width: 80%;
@@ -46,6 +61,7 @@ const SubContainer = styled.div`
   height: 80%;
   width: 100%;
   display: flex;
+  background-color: #7EB10A;
   flex-direction: column;
   gap: 4rem;
   @media screen and (min-width: 320px) and (max-width: 1080px) {
@@ -81,6 +97,7 @@ const RecentContainer = styled.div`
   flex-direction: column;
   height: max-content;
   width: 100%;
+  background-color: #7EB10A;
   @media screen and (min-width: 320px) and (max-width: 1080px) {
     height: max-content;
     justify-content: center;
@@ -99,6 +116,7 @@ const SuggestContainer = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: #7EB10A;
   }
 `;
 
