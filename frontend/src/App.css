@@ -2,8 +2,8 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  margin: 0;
-  padding: 0;
+  margin: 5;
+  padding: 5;
   box-sizing: border-box;
 }
 
@@ -16,6 +16,16 @@ h5,
 a,
 ul,
 li {
-  margin: 0;
-  padding: 0;
+  margin: 5;
+  padding: 5;
+}
+
+.nav-link {
+  color: black;
+}
+
+.center {
+  margin: auto;
+  width: 60%;
+  height: 100%;
 }
