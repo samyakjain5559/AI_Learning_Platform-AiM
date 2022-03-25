@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
 function Navbar() {
-  
   useEffect(() => {
     fetchItems();
   }, []);
@@ -15,11 +14,10 @@ function Navbar() {
 
   return (
     <NavbarContainer>
-
       <Text>
         Hello
         {items.map((item) => (
-           <span> {item.fullname}</span>       
+          <span> {item.fullname}</span>
         ))}
       </Text>
       <InputContainer>
