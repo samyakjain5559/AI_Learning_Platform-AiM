@@ -57,7 +57,22 @@ const Quiz = (props) => {
     return(
        <div className="container" style={{ height: '100vh' }}>
            <Quizn quiz={quiz2}/>
-           <QRCode value="https://wingkwong.github.io/react-quiz-component/" />
+               
+{/* Sample code change: start */}
+            const QRCode = new QRCodeStyling({
+                width= 150,
+                height= 150,
+                type= "svg",
+                image= "https://wingkwong.github.io/react-quiz-component/",
+                dotsOptions= {
+                    color= "#006400",
+                    type= "rounded"
+                }
+            })
+{/* Sample code change: end */}
+
+{/* revert code change: uncomment line below */}
+           {/* <QRCode value="https://wingkwong.github.io/react-quiz-component/" /> */}
        <div className="row h-1">
         <div className="col-md-5 mx-auto h-100 d-flex flex-column justify-content-center">
           
