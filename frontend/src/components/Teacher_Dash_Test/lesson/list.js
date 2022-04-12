@@ -17,7 +17,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.*/
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Navbar from "../navbar";
 
 function List() {
   // Used for fetching from backend
@@ -35,6 +35,7 @@ function List() {
 
   return (
     <section>
+      <Navbar />
       <div class="container-fluid">
         <h1>Lesson List</h1>
         {items.map((item) => (

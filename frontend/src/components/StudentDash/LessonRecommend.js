@@ -1,13 +1,51 @@
-import React from "react";
 import styled from "styled-components";
 import Badge from "./Badge";
 import { cardShadow, hoverEffect } from "./common";
+import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 function LessonRecommend() {
+  // Used for fetching from backend
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
+  const [items, setItems] = useState([]);
+
+  const fetchItems = async () => {
+    const data = await fetch(`/listCourse1`);
+    const items = await data.json();
+    setItems(items);
+  };
+
   return (
     <RecommendLesson>
       <CardContent>
-        <Badge content="Add recommended Course here." />
+        <Badge content="Recommended Courses." />
+        <div class="panel panel-default scrollable-panel">
+          {items.map((item) => (
+            <div class="row padding">
+              <div class="alert alert-info" role="alert">
+                <i class="fa fa-user mr-2"></i>{" "}
+                <i>
+                  <form method="POST" action="/viewCourse1">
+                    <b>Course Name:</b> {item.CourseName} ||{" "}
+                    <b>Course Description:</b> {item.CourseDescription} ||{" "}
+                    <b>Course ID:</b> {item.CourseId}
+                    <br />
+                    <button
+                      name="CourseId"
+                      class="btn btn-primary"
+                      value={item.CourseId}
+                    >
+                      View Course
+                    </button>
+                  </form>
+                </i>
+              </div>
+            </div>
+          ))}
+        </div>
       </CardContent>
     </RecommendLesson>
   );

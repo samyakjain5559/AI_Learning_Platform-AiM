@@ -13,7 +13,7 @@ import ViewCourse from "./components/Teacher_Dash_Test/course/view";
 import ListCourseLesson from "./components/Teacher_Dash_Test/course/listlesson";
 import Adder from "./components/Teacher_Dash/Adder";
 import List from "./components/Teacher_Dash/List";
-import FeedbackAI from './components/FeedbackAI';
+import FeedbackAI from "./components/FeedbackAI";
 import quiz from "./components/quiz/quiz";
 
 function App() {

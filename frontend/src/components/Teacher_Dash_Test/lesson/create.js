@@ -18,10 +18,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.*/
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../navbar";
 
 function Adder() {
   return (
     <section>
+      <Navbar />
       <h1>Create a new lesson!</h1>
 
       <form method="POST" action="/createLesson1">

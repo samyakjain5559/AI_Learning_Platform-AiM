@@ -31,8 +31,8 @@ export function LoginForm(props) {
         if (response.data.message) {
           setLoginStatus(response.data.message);
         } else {
-          history.push("/addLessons"); // login successful => go to teacher page
-          //history.push("/studentdash"); // login successful => go to student page
+          // history.push("/addLessons"); // login successful => go to teacher page
+          history.push("/studentdash"); // login successful => go to student page
         }
       });
   }

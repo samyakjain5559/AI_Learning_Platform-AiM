@@ -18,6 +18,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.*/
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../navbar";
+import ReactPlayer from "react-player";
 
 function List() {
   // Used for fetching from backend
@@ -35,6 +37,7 @@ function List() {
 
   return (
     <section>
+      <Navbar />
       <div class="container-fluid">
         <h1>Lessons</h1>
         {items.map((item) => (
@@ -43,8 +46,9 @@ function List() {
               <i class="fa fa-user mr-2"></i>{" "}
               <i>
                 <b>Lesson Name:</b> {item.LessonName} ||{" "}
-                <b>Lesson Description:</b> {item.description} ||{" "}
-                <b>Lesson ID:</b> {item.LessonId} ||{" "}
+                <b>Lesson Description:</b>
+                <ReactPlayer url={item.description} />
+                || <b>Lesson ID:</b> {item.LessonId} ||{" "}
                 <b>Belongs in Course ID:</b> {item.CourseId}
               </i>
             </div>
