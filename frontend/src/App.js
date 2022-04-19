@@ -17,55 +17,24 @@ import FeedbackAI from './components/FeedbackAI';
 import quiz from "./components/quiz/quiz";
 
 function App() {
-    return ( <
-        Router >
-        <
-        Switch >
-        <
-        Route path = "/"
-        component = { Home }
-        exact / >
-        <
-        Route path = "/signin"
-        component = { SigninPage }
-        exact / >
-        <
-        Route path = "/studentdash"
-        component = { StudentDashPage }
-        exact / >
-        <
-        Route path = "/course/create"
-        exact component = { CreateCourse }
-        /> <
-        Route path = "/course/list"
-        exact component = { ListCourse }
-        /> <
-        Route path = "/lesson/create"
-        exact component = { CreateLesson }
-        /> <
-        Route path = "/lesson/list"
-        exact component = { ListLesson }
-        /> <
-        Route path = "/course/view"
-        exact component = { ViewCourse }
-        /> <
-        Route path = "/addLessons"
-        exact component = { Adder }
-        /> <
-        Route path = "/course/listlesson"
-        exact component = { ListCourseLesson }
-        /> <
-        Route path = "/listLessons"
-        exact component = { List }
-        /> <
-        Route path = "/feedback"
-        exact component = { FeedbackAI }
-        /> <
-        Route path = "/quizzes"
-        exact component = { quiz }
-        /> <
-        /Switch> <
-        /Router>
+    return (
+        <Router >
+            <Switch >
+                <Route path="/" exact component={Home} />
+                <Route path="/signin" exact component={SigninPage} />
+                <Route path="/studentdash" component={StudentDashPage} />
+                <Route path="/course/create" exact component={CreateCourse} />
+                <Route path="/course/list" exact component={ListCourse} />
+                <Route path="/lesson/create" exact component={CreateLesson} />
+                <Route path="/lesson/list" exact component={ListLesson} />
+                <Route path="/course/view" exact component={ViewCourse} />
+                <Route path="/addLessons" exact component={Adder} />
+                <Route path="/course/listlesson" exact component={ListCourseLesson} />
+                <Route path="/listLessons" exact component={List} />
+                <Route path="/feedback" exact component={FeedbackAI} />
+                <Route path="/quizzes" exact component={quiz} />
+            </Switch>
+        </Router>
     );
 }
 
