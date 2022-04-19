@@ -48,9 +48,6 @@ export function Speech() {
 
     return (
         <div>
-            <h3>
-                File Upload Sample
-            </h3>
             <div>
                 <input type="file" onChange={onFileChange} />
                 <button onClick={onFileUpload}>

@@ -310,7 +310,6 @@ router.post("/speech_to_text", upload.single("file"), (req, res) => {
 });
 
 // get file name from db based on email which is recent user and global variable
-// file that student is uploading must be in reosurces folder but it can choose any file from its resources folder.
 // USE ONLY single channel files , use audacity recorder and change to single channel -- https://forum.audacityteam.org/viewtopic.php?t=60393
 router.get("/get_feedback", (req, res) => {
   // Require Google API key -- put GOOGLE_APPLICATION_CREDENTIALS=KEY in .env
